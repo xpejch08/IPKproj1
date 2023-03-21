@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <string>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/socket.h>
@@ -16,8 +17,13 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <regex>
+#include <signal.h>
 
 #define BUFFER_SIZE 1024
+
+int socketGlobal = 0;
+int tcpOrUdp;
+char bufferSig[BUFFER_SIZE];
 
 /**
  * @class helpFunctions
@@ -149,6 +155,7 @@ public:
             std::cerr << "ERROR: problem with creating socket" << std::endl;
             exit(EXIT_FAILURE);
         }
+        socketGlobal = cSocket;
     }
 
     /**
@@ -158,9 +165,6 @@ public:
      * If the connection fails an error message is printed on the stderr and the program ends.
      */
     void readMessageFromUser(){
-        explicit_bzero(buffer, BUFFER_SIZE);
-        fgets(buffer, BUFFER_SIZE, stdin);
-
         //checking if we are connected or once, then increasing first -> connection happens only once
         if(first == 0) {
             first++;
@@ -169,6 +173,10 @@ public:
                 exit(EXIT_FAILURE);
             }
         }
+
+        explicit_bzero(buffer, BUFFER_SIZE);
+        fgets(buffer, BUFFER_SIZE, stdin);
+
     }
 
     /**
@@ -236,6 +244,7 @@ private:
 class clientUDP{
 public:
 
+
     /**
      * @brief is a method used for setting the command line arguments
      * @param argv
@@ -295,6 +304,7 @@ public:
             std::cerr << "ERROR: problem with creating socket" << std::endl;
             exit(EXIT_FAILURE);
         }
+        socketGlobal = cSocket;
     }
 
     /**
@@ -381,10 +391,30 @@ private:
 };
 
 /**
+ * @brief signall handler that checks for sigint, If we are in tcp mode we send the message "BYE\n" to the server
+ * and end the communication by closing the socket. If we are in udp mode we just close the socket and end the program.
+ * @param signum signal that we got In this case SIGINT
+ */
+void signal_callback_handler(int signum) {
+    if(tcpOrUdp == 1){
+        int byteStx;
+        strcpy(bufferSig, "BYE\n");
+        byteStx = send(socketGlobal, bufferSig, strlen(bufferSig), 0);
+        if (byteStx < 0) {
+            std::cerr << "ERROR: Sent message gone wrong";
+        }
+    }
+    close(socketGlobal);
+    exit(signum);
+}
+
+/**
  * @brief main body of program
  */
 int main(int argc, char *argv[]) {
+    signal(SIGINT, signal_callback_handler);
     //setting all the objects needed
+    struct sigaction sigHandler;
     clientTCP client;
     clientUDP clientUDP;
     helpFunctions help;
@@ -398,6 +428,7 @@ int main(int argc, char *argv[]) {
 
     //if mode is tcp we go into this branch, else we know the mode is udp because the args have been checked
     if(mode.compare(tcp) == 0) {
+        tcpOrUdp = 1;
         //part that needs to happen only once
         client.getServerAdress();
         client.findIp();
@@ -411,6 +442,7 @@ int main(int argc, char *argv[]) {
         }
     }
     else{
+        tcpOrUdp = 0;
         //part that needs to happen only once
         clientUDP.getServerAdress();
         clientUDP.findIp();
