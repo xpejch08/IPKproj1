@@ -10,5 +10,6 @@
 - The program also checks for SIGINT/C-c all the time and ends the program gracefully depenging on if we are in TCP or UDP
 - in the if branches I call the object methods accordingly depending on if we are in TCP or UDP
 - The code was tested multiple times on the virtual machine given with the task
-- I wasn't able to find any problems or errors wwhile running the code 
+- I wasn't able to find any problems or errors while running the code 
+- I programmed the code locally and on github before I read that it should be done one the school git so the school git isn't in a very nice state 
 
