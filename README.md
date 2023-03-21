@@ -122,3 +122,9 @@ In the main body I first declare all the objects I use (client, clientUDP, help)
 - testing udp:
 ![Picture 6](/img/testingUdp.png "udp test")
 ## sources
+- IPK lectures
+- stubs fit git IPK
+- [link] https://www.tutorialspoint.com/data_communication_computer_network/user_datagram_protocol.htm
+- [link] https://www.geeksforgeeks.org/user-datagram-protocol-udp/
+- [link] https://en.wikipedia.org/wiki/Transmission_Control_Protocol
+- [link] https://www.geeksforgeeks.org/what-is-transmission-control-protocol-tcp/
