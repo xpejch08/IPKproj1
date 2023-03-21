@@ -175,7 +175,7 @@ public:
         }
 
         explicit_bzero(buffer, BUFFER_SIZE);
-        fgets(buffer, BUFFER_SIZE, stdin);
+      auto fgetsRet = fgets(buffer, BUFFER_SIZE, stdin);
 
     }
 
@@ -316,7 +316,7 @@ public:
         bzero(buffer, BUFFER_SIZE);
         bzero(message, BUFFER_SIZE);
         //while(!strcmp(message, "\0") || !strcmp(message, "\n")){
-            fgets(message, BUFFER_SIZE, stdin);
+          auto fgetsRet= fgets(message, BUFFER_SIZE, stdin);
         //}
         char bufferByte1 = 48;
         char length = (char)(strlen(message)-1);
