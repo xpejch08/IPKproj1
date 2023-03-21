@@ -18,7 +18,7 @@ TCP (Transmission Control Protocol) is a defined way of communication through a 
 - Closing the connection with the server
 
 TCP communication can look like something below where the red rectangle shows which part of the communication can be done repeatedly and which part happens only once.
-![Picture 1](/relative%20apth/to/img/TCP.png "TCP Communication")
+![Picture 1](/img/TCP.png "TCP Communication")
 
 ### UDP (User Datagram Protocol)
 UDP (User Datagram Protocol) is also a defined way of communication similar to TCP. The main difference between TCP and UDP is that UDP is a connectionless and unreliable protocol. There is no need to establish a connection prior to data transfer, that can result in some loss of data and that is why UDP is used mainly for low-latency, losst-tolerating connections established over a network. The UDP communication is used for example in voice or video connection mainly because it is more efficient. One of the reasons is that UDP doesn't check for errors. In UDP communication there are also 4 main parts to implement on the client side:
