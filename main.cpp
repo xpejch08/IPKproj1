@@ -392,17 +392,37 @@ private:
 
 /**
  * @brief signall handler that checks for sigint, If we are in tcp mode we send the message "BYE\n" to the server
- * and end the communication by closing the socket. If we are in udp mode we just close the socket and end the program.
+ * and end the communication by closing the socket after recieving a bye message from the server.
+ * If we are in udp mode we just close the socket and end the program.
  * @param signum signal that we got In this case SIGINT
  */
 void signal_callback_handler(int signum) {
     if(tcpOrUdp == 1){
         int byteStx;
         strcpy(bufferSig, "BYE\n");
+        //printing the last client message on stdin
+        printf("\nBYE\n");
+        //sending bye message to server
         byteStx = send(socketGlobal, bufferSig, strlen(bufferSig), 0);
         if (byteStx < 0) {
             std::cerr << "ERROR: Sent message gone wrong";
         }
+        //recieving message from server and then ending program after closing the socket
+        explicit_bzero(bufferSig, BUFFER_SIZE);
+        int byteSrx = 0;
+        while (true) {
+            //variable that counts how much bytes of memory the client read
+            int bytesRead = read(socketGlobal, bufferSig + byteSrx, BUFFER_SIZE - byteSrx);
+            if (bytesRead < 0) {
+                std::cerr << "ERROR: Recieved wrong message";
+                exit(EXIT_FAILURE);
+            }
+            byteSrx += bytesRead;
+            if (byteSrx >= BUFFER_SIZE || bufferSig[byteSrx - 1] == '\n') {
+                break;
+            }
+        }
+        printf("%s", bufferSig);
     }
     close(socketGlobal);
     exit(signum);
