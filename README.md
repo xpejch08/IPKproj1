@@ -127,7 +127,7 @@ In the main body I first declare all the objects I use (client, clientUDP, help)
 
 ## Extended implementation (not defined in the task)
 - checking the command line parameters of the executable ![Picture 8](/img/testingparametrs.png "udp test")
-- while testing the code on the virtual machine I found that when in the udp mode u send an empty message, the server ends but the program is still running which seemed odd. I implemented that when a user sends an empty message the client doesn't send it but waits for a message with text. I wasn't sure if that is correct so i commented the code on line 318 out. Picture of weird behaviour found while testing ![Picture 7](/img/emptymessage.png "udp test")
+- while testing the code on the virtual machine I found that when in the udp mode an empty message is sent, the server ends but the program is still running which seemed odd. I implemented that when a user sends an empty message the client doesn't send it but waits for a message with text. I wasn't sure if that is correct so i commented the code on line 318 out. Picture of weird behaviour found while testing: ![Picture 7](/img/emptymessage.png "udp test")
 
 
 ## Bibliographie/sources
