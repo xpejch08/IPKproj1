@@ -28,7 +28,7 @@ UDP (User Datagram Protocol) is also a defined way of communication similar to T
 - closing th connection
 
 UDP communication can look like something below where the red rectangle shows which part of the communication can be done repeatedly and which part happens only once.
-![Picture 2](/relative/path/to/img.jpg?raw=true "UDP Communication")
+![Picture 2](/img/UDP.png "UDP Communication")
 ## Protocol description
 The Protocol is described in 2 variants, Binary and Textual.
 ### Binary
@@ -113,5 +113,12 @@ char message[BUFFER_SIZE];
 ### main body
 In the main body I first declare all the objects I use (client, clientUDP, help). It then checks the command line arguments using the checkArgs(method) and sets the arguments for both objects. After that the main body consists of an if statement checking whether the tcp or the udp mode is turned on. The branches of the if statement are the same, the only difference is that hey are operating on different objects, either the client -> clientTCP object, or the clientUDP -> clientUDP object. The branches consist of two parts, what happens before a infinite loop, and what happens after it. Before the loop i call getServerAdress(), findIp() and createSocket(). In the infinite loop I call readMessageFromUser(), sendMessage(), cleanBuff(), recieveMessage(), and then cleanBuff() again, all of which are described above.
 ## Usage/Examples
-
+- testing make:
+![Picture 3](/img/testingmake.png "make test")
+- testing parameters:
+![Picture 4](/img/testingparameters.png "parameters test")
+- testing tcp:
+![Picture 5](/img/testingtcp.png "tcp test")
+- testing make:
+![Picture 6](/img/testingudp.png "udp test")
 ## sources
