@@ -3,6 +3,6 @@ CFLAGS = -Wall -Werror
 TARGET = main.cpp
 
 all:
-	g++ main.cpp -o ipkpd
+	g++ -std=c++20 main.cpp -o ipkpd
 clean:
 	$(RM) ipkpd
