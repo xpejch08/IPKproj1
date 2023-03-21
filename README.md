@@ -120,5 +120,5 @@ In the main body I first declare all the objects I use (client, clientUDP, help)
 - testing tcp:
 ![Picture 5](/img/testingtcp.png "tcp test")
 - testing udp:
-![Picture 6](/img/testingudp.png "udp test")
+![Picture 6](/img/testingUdp.png "udp test")
 ## sources
