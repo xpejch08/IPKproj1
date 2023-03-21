@@ -125,7 +125,7 @@ In the main body I first declare all the objects I use (client, clientUDP, help)
 - testing udp:
 ![Picture 6](/img/testingUdp.png "udp test")
 
-## sources
+## Bibliographie/sources
 - IPK lectures
 - stubs fit git IPK
 - [link] https://www.tutorialspoint.com/data_communication_computer_network/user_datagram_protocol.htm
