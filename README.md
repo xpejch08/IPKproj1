@@ -116,9 +116,9 @@ In the main body I first declare all the objects I use (client, clientUDP, help)
 - testing make:
 ![Picture 3](/img/testingmake.png "make test")
 - testing parameters:
-![Picture 4](/img/testingparameters.png "parameters test")
+![Picture 4](/img/testingparametrs.png "parameters test")
 - testing tcp:
 ![Picture 5](/img/testingtcp.png "tcp test")
-- testing make:
+- testing udp:
 ![Picture 6](/img/testingudp.png "udp test")
 ## sources
