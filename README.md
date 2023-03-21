@@ -114,13 +114,17 @@ char message[BUFFER_SIZE];
 In the main body I first declare all the objects I use (client, clientUDP, help). It then checks the command line arguments using the checkArgs(method) and sets the arguments for both objects. After that the main body consists of an if statement checking whether the tcp or the udp mode is turned on. The branches of the if statement are the same, the only difference is that hey are operating on different objects, either the client -> clientTCP object, or the clientUDP -> clientUDP object. The branches consist of two parts, what happens before a infinite loop, and what happens after it. Before the loop i call getServerAdress(), findIp() and createSocket(). In the infinite loop I call readMessageFromUser(), sendMessage(), cleanBuff(), recieveMessage(), and then cleanBuff() again, all of which are described above. Also I check for SIGINT (C-c) by using the signal function and then the signal handler. If the program is in udp mode I send a "BYE\n" message to the server and close then connection before exiting the program, if in udp mode I just close the connection and exit the program.
 ## Usage/Examples
 - testing make:
-![Picture 3](/img/testingmake.png "make test")
+![Picture 3](/img/maketest.png "make test")
+
 - testing parameters:
 ![Picture 4](/img/testingparametrs.png "parameters test")
+
 - testing tcp:
 ![Picture 5](/img/testingtcp.png "tcp test")
+
 - testing udp:
 ![Picture 6](/img/testingUdp.png "udp test")
+
 ## sources
 - IPK lectures
 - stubs fit git IPK
